@@ -1,0 +1,99 @@
+name: Cold Store Monitoring (minimal)
+widgets:
+    - height: 4
+      height_mobile: 2
+      name: Evaporator Temperature
+      type: Value
+      variables:
+        - thing_id: template-thing-id
+          variable_id: evaporatorTemperature
+      width: 4
+      width_mobile: 8
+      x: 0
+      x_mobile: 0
+      "y": 4
+      y_mobile: 10
+    - height: 8
+      height_mobile: 6
+      name: Ambient Temperature
+      type: Chart
+      variables:
+        - thing_id: template-thing-id
+          variable_id: ambientTemperature
+      width: 10
+      width_mobile: 8
+      x: 4
+      x_mobile: 0
+      "y": 0
+      y_mobile: 4
+    - height: 8
+      height_mobile: 6
+      name: Evaporator Temperature
+      type: Chart
+      variables:
+        - thing_id: template-thing-id
+          variable_id: evaporatorTemperature
+      width: 10
+      width_mobile: 8
+      x: 14
+      x_mobile: 0
+      "y": 0
+      y_mobile: 12
+    - height: 4
+      height_mobile: 2
+      name: Device Responsive
+      options:
+        mode: True / False
+      type: Status
+      variables:
+        - thing_id: template-thing-id
+          variable_id: deviceResponsive
+      width: 4
+      width_mobile: 8
+      x: 8
+      x_mobile: 0
+      "y": 8
+      y_mobile: 0
+    - height: 4
+      height_mobile: 4
+      name: Open Door Alarm
+      options:
+        mode: Color 1
+      type: LED
+      variables:
+        - thing_id: template-thing-id
+          variable_id: openDoorAlarmStatus
+      width: 4
+      width_mobile: 4
+      x: 4
+      x_mobile: 0
+      "y": 8
+      y_mobile: 18
+    - height: 4
+      height_mobile: 4
+      name: Temperature Alarm
+      options:
+        mode: Color 1
+      type: LED
+      variables:
+        - thing_id: template-thing-id
+          variable_id: temperatureAlarmStatus
+      width: 4
+      width_mobile: 4
+      x: 0
+      x_mobile: 4
+      "y": 8
+      y_mobile: 18
+    - height: 4
+      height_mobile: 2
+      name: Ambient Temperature
+      type: Value
+      variables:
+        - thing_id: template-thing-id
+          variable_id: ambientTemperature
+      width: 4
+      width_mobile: 8
+      x: 0
+      x_mobile: 0
+      "y": 0
+      y_mobile: 2

@@ -1,0 +1,142 @@
+sketch_template: ColdStoreMonitoring
+variables:
+  - id: deviceResponsive
+    name: deviceResponsive
+    variable_name: deviceResponsive
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: ambientTemperature
+    name: ambientTemperature
+    variable_name: ambientTemperature
+    type: TEMPERATURE
+    permission: READ_ONLY
+    update_parameter: 1
+    update_strategy: ON_CHANGE
+  - id: evaporatorTemperature
+    name: evaporatorTemperature
+    variable_name: evaporatorTemperature
+    type: TEMPERATURE
+    permission: READ_ONLY
+    update_parameter: 1
+    update_strategy: ON_CHANGE
+  - id: hotResistanceStatus
+    name: hotResistanceStatus
+    variable_name: hotResistanceStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: standByStatus
+    name: standByStatus
+    variable_name: standByStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: drippingStatus
+    name: drippingStatus
+    variable_name: drippingStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: coldRoomLightRelayStatus
+    name: coldRoomLightRelayStatus
+    variable_name: coldRoomLightRelayStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: fansRelayStatus
+    name: fansRelayStatus
+    variable_name: fansRelayStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: defrostRelayStatus
+    name: defrostRelayStatus
+    variable_name: defrostRelayStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: compressorRelayStatus
+    name: compressorRelayStatus
+    variable_name: compressorRelayStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: compressorProtectionStatus
+    name: compressorProtectionStatus
+    variable_name: compressorProtectionStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: doorSwitchStatus
+    name: doorSwitchStatus
+    variable_name: doorSwitchStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: lightAlarmStatus
+    name: lightAlarmStatus
+    variable_name: lightAlarmStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: compressorProtectionAlarmStatus
+    name: compressorProtectionAlarmStatus
+    variable_name: compressorProtectionAlarmStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: manInRoomAlarmStatus
+    name: manInRoomAlarmStatus
+    variable_name: manInRoomAlarmStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: openDoorAlarmStatus
+    name: openDoorAlarmStatus
+    variable_name: openDoorAlarmStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: temperatureAlarmStatus
+    name: temperatureAlarmStatus
+    variable_name: temperatureAlarmStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: eepromErrorStatus
+    name: eepromErrorStatus
+    variable_name: eepromErrorStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: evaporatorProbeFaultStatus
+    name: evaporatorProbeFaultStatus
+    variable_name: evaporatorProbeFaultStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
+  - id: ambientProbeFaultStatus
+    name: ambientProbeFaultStatus
+    variable_name: ambientProbeFaultStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
