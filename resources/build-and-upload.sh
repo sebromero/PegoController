@@ -2,7 +2,7 @@
 
 SKETCH_PATH="$1"
 BOARD_LIST_OUTPUT=$(arduino-cli board list --format json)
-FQBN=$(echo $BOARD_LIST_OUTPUT | sed -n "s/.*\"fqbn\": \"\([0-9A-Za-z\-\:]*\)\".*/\1/p")
+FQBN=$(echo $BOARD_LIST_OUTPUT | sed -n "s/.*\"fqbn\": \"\([0-9A-Za-z\_\-\:]*\)\".*/\1/p")
 
 if [[ ! "$FQBN" ]]; then
     echo "❌ No device found. Have you plugged in your board?"
