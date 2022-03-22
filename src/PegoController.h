@@ -11,7 +11,6 @@
 
 #define DEFAULT_PERIPHERAL_ID 1
 #define ECP_202 // Enables the ECP 202 base features
-#define DEBUG 1
 
 class PegoController {
 private:
@@ -147,7 +146,7 @@ public:
     // PARAMETER REGISTERS
     
     /**
-     * @brief Get the Temperature Set Point
+     * @brief Get the Temperature Set Point. This is the target temperature of the cold store.
      * - Unit: °C
      * - Resolution: 0.1 °C steps, with sign 
      * - Range: LSE..HSE
@@ -156,15 +155,17 @@ public:
     float getTemperatureSetPoint();
 
     /**
-     * @brief Set the Temperature Set Point
-     * 
-     * @param value The temperature in °C. Range: LSE..HSE
-     * @return true If the value was updated succssfully, false otherwise.
+     * @brief Set the Temperature Set Point. This is the target temperature of the cold store.
+     * - Unit: °C
+     * - Resolution: 0.1 °C steps, with sign 
+     * - Range: LSE..HSE
+     * @param value The temperature in °C.
+     * @return true if the value was updated succssfully, false otherwise.
      */
     bool setTemperatureSetPoint(float value);
     
     /**
-     * @brief Get the Temperature Differential
+     * @brief Get the Temperature Differential. The value refers to the main set point.
      * - Device Variable: r0
      * - Unit: °C
      * - Resolution: 0.1 °C steps
@@ -172,10 +173,20 @@ public:
      * @return the temperature in °C  
      */
     float getTemperatureDifferential();
+
+    /**
+     * @brief Set the Temperature Differential. The value refers to the main set point
+     * - Device Variable: r0
+     * - Unit: °C
+     * - Resolution: 0.1 °C steps
+     * - Range: 0.2..10.0 °C
+     * @param value The temperature in °C. 
+     * @return true if the value was updated succssfully, false otherwise.
+     */
     bool setTemperatureDifferential(float value);
     
     /**
-    * @brief Get the defrosting period
+    * @brief Get the defrosting period, the interval for defrost. If d0 = 0 the cyclic defrosts are disabled 
     * - Device Variable: d0
     * - Unit: hours
     * - Resolution: 1 hour steps
@@ -183,17 +194,40 @@ public:
     * @return the period in hours
     */
     int16_t getDefrostingPeriod();
+
+    /**
+     * @brief Set the Defrosting period, the interval for defrost. If d0 = 0 the cyclic defrosts are disabled 
+    * - Device Variable: d0
+    * - Unit: hours
+    * - Resolution: 1 hour steps
+    * - Range: 0..24 hours (0 = disabled)     
+     * @param value The period in hours
+     * @return true if the value was updated succssfully, false otherwise.
+     */
     bool setDefrostingPeriod(int16_t value);
     
     /**
-    * @brief Get the end temperature of the defrosting process
+    * @brief Get the end temperature of the defrosting process. 
+    * Defrost is not carried out if the temperature read by the defrost probe is greater than the value of d2.
+    * (If the probe is broken defrost is performed based on time)
     * - Device Variable: d2
     * - Unit: °C
     * - Resolution: 1 °C steps, with sign
     * - Range: -35..+45 °C
-    * @return
+    * @return the temperature in °C
     */
     int16_t getEndOfDefrostingTemperature();
+
+    /**
+    * @brief Set the end temperature of the defrosting process. 
+    * Defrost is not carried out if the temperature read by the defrost probe is greater than the value of d2.
+    * (If the probe is broken defrost is performed based on time)
+    * - Device Variable: d2
+    * - Unit: °C
+    * - Resolution: 1 °C steps, with sign
+    * - Range: -35..+45 °C
+    * @return true if the value was updated succssfully, false otherwise.
+    */
     bool setEndOfDefrostingTemperature(int16_t value);
     
     /**
