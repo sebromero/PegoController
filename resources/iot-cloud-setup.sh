@@ -26,12 +26,15 @@ else
     echo "✅ Arduino IoT Cloud credentials found."
 fi
 
+# Create build folder to store json response files
+mkdir "build" > /dev/null 2>&1
+
 # Check if thing is already created
-arduino-cloud-cli thing list | grep "$THING_NAME" > /dev/null 2>&1
+arduino-cloud-cli thing list --format json | grep '"name": "$THING_NAME"' > /dev/null 2>&1
 
 if [ $? -ne 0 ]; then
     echo "Creating thing '$THING_NAME' ..."
-    arduino-cloud-cli thing create --name "$THING_NAME" --template $THING_FILE --format json > thing.json
+    arduino-cloud-cli thing create --name "$THING_NAME" --template $THING_FILE --format json > build/thing.json
     if [ $? -ne 0 ]; then
         echo "❌ Couldn't create thing '$THING_NAME'"
         exit 1
@@ -40,7 +43,7 @@ else
     echo "✅ Thing '$THING_NAME' already exists."
 fi
 
-THING_ID=$(cat thing.json | sed -n "s/.*\"id\": \"\([0-9A-Za-z\-]*\)\".*/\1/p")
+THING_ID=$(cat build/thing.json | sed -n "s/.*\"id\": \"\([0-9A-Za-z\-]*\)\".*/\1/p")
 
 function maybeCreateDashboard(){
     local dashboardName=$1
@@ -49,7 +52,7 @@ function maybeCreateDashboard(){
     local outputFilename=$4
 
     # Check if dashboard already exists
-    arduino-cloud-cli dashboard list | grep "$dashboardName" > /dev/null 2>&1
+    arduino-cloud-cli dashboard list --format json | grep '"name": "$dashboardName"' > /dev/null 2>&1
     if [ $? -ne 0 ]; then
         echo "Creating dashboard '$dashboardName' using thing ID $THING_ID ..."
         arduino-cloud-cli dashboard create --name "$dashboardName" --template $dashboardFile --override template-thing-id=$thingID --format json > $outputFilename
@@ -62,12 +65,12 @@ function maybeCreateDashboard(){
     fi
 }
 
-maybeCreateDashboard "$DASHBOARD_NAME" "$DASHBOARD_FILE" "$THING_ID" "dashboard.json"
-maybeCreateDashboard "$DASHBOARD_NAME_MINIMAL" "$DASHBOARD_FILE_MINIMAL" "$THING_ID" "dashboard-minimal.json"
+maybeCreateDashboard "$DASHBOARD_NAME" "$DASHBOARD_FILE" "$THING_ID" "build/dashboard.json"
+maybeCreateDashboard "$DASHBOARD_NAME_MINIMAL" "$DASHBOARD_FILE_MINIMAL" "$THING_ID" "build/dashboard-minimal.json"
 
 # Check if device is already registerd to Arduino IoT Cloud
 BOARD_LIST_OUTPUT=$(arduino-cli board list --format json)
-DEVICE_SERIAL_NUMBER=$(echo $BOARD_LIST_OUTPUT | sed -n "s/.*\"serialNumber\": \"\([0-9A-Za-z\-]*\)\".*/\1/p")
+DEVICE_SERIAL_NUMBER=$(echo "$BOARD_LIST_OUTPUT" | sed -n "s/.*\"serialNumber\": \"\([0-9A-Za-z\-]*\)\".*/\1/p")
 
 if [[ ! $DEVICE_SERIAL_NUMBER ]]; then
     echo "❌ Device serial number of attached device could not be retrieved."
@@ -78,7 +81,7 @@ arduino-cloud-cli device list | grep $DEVICE_SERIAL_NUMBER > /dev/null 2>&1
 
 if [ $? -ne 0 ]; then    
     echo "Registering device with SN $DEVICE_SERIAL_NUMBER with Arduino IoT Cloud..."
-    arduino-cloud-cli device create --name "$DEVICE_NAME" --format json > device.json
+    arduino-cloud-cli device create --name "$DEVICE_NAME" --format json > build/device.json
     if [ $? -ne 0 ]; then
         echo "❌ Couldn't register your device"
         exit 1
@@ -88,7 +91,7 @@ else
 fi
 
 # Check if device is already associated
-DEVICE_ID=`cat device.json | sed -n "s/.*\"id\": \"\([0-9A-Za-z\-]*\)\".*/\1/p"`
+DEVICE_ID=`cat build/device.json | sed -n "s/.*\"id\": \"\([0-9A-Za-z\-]*\)\".*/\1/p"`
 
 if [[ ! $DEVICE_ID ]]; then
     echo "❌ Device ID of attached device could not be read."
@@ -96,7 +99,7 @@ if [[ ! $DEVICE_ID ]]; then
 fi
 
 THING_LIST_OUTPUT=`arduino-cloud-cli thing list --device-id "$DEVICE_ID" --format json`
-ASSOCIATED_THING_ID=`echo $THING_LIST_OUTPUT | sed -n "s/.*\"id\": \"\([0-9A-Za-z\-]*\)\".*/\1/p"`
+ASSOCIATED_THING_ID=`echo "$THING_LIST_OUTPUT" | sed -n "s/.*\"id\": \"\([0-9A-Za-z\-]*\)\".*/\1/p"`
 
 if [ "$THING_LIST_OUTPUT" = "null" ]; then
     echo "Binding attached device to thing..."
@@ -113,7 +116,7 @@ fi
 read -p "🆙 Would you like to upload the IoT Cloud firmware to you board? [y/n] " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    FQBN=$(echo $BOARD_LIST_OUTPUT | sed -n "s/.*\"fqbn\": \"\([0-9A-Za-z\-\:]*\)\".*/\1/p")
+    FQBN=$(echo $BOARD_LIST_OUTPUT | sed -n "s/.*\"fqbn\": \"\([0-9A-Za-z\_\-\:]*\)\".*/\1/p")
 
     if [[ $FQBN == *"arduino:samd:mkrgsm1400"* ]]; then
         echo "Using default Arduino SIM credentials."
