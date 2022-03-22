@@ -30,16 +30,17 @@
  * Prt = 0 (default: 0) -> No Modbus parity check
  * Ad = 1 (default: 0) -> Net address 1 ÷ 247
  * 
- * UP + DOWN + LIGHT for 3sec
- * Up / down to select
- * SET (grid btn) + UP/DOWN to change value
- * UP + DOWN for 3 sec to exit
- * Standby for 1 sec to go back to normal
+ * To change the settings:
+ * Press UP + DOWN + LIGHT for 3 seconds
+ * Press UP / DOWN to select the variable that you want to change
+ * Press SET (looks like a grid) + UP/DOWN to change the value
+ * Press UP + DOWN for 3 sec to exit
+ * Press the Standby button for 1 sec to go back to normal operating mode
  */
 
 #include "PegoController.h"
 
-// Defines how often the peripheral's register are read in ms
+// Defines how often the peripheral's registers are read in ms
 #define REGISTER_UPDATE_INTERVAL 30000
 
 // Defines the baudrate for the serial connection between the board and the Pego device

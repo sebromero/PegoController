@@ -2,6 +2,9 @@
 // Check thingProperties.h to find out which ones.
 #define MINIMAL_THINGS_CONFIG
 
+// Enable debugging
+//#define DEBUG
+
 #include <Arduino.h>
 #include "thingProperties.h"
 #include "PegoController.h"

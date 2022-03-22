@@ -1,0 +1,9 @@
+{
+  "cpu": {
+    "fqbn": "arduino:samd:mkrgsm1400",
+    "name": "Arduino MKR GSM 1400",
+    "type": "serial"
+  },
+  "secrets": [],
+  "included_libs": []
+}

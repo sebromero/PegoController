@@ -4,7 +4,7 @@
 #include <Arduino_ConnectionHandler.h>
 #include "arduino_secrets.h"
 
-bool deviceResponsive;
+#if !defined(MINIMAL_THINGS_CONFIG)
 bool ambientProbeFaultStatus;
 bool coldRoomLightRelayStatus;
 bool compressorProtectionAlarmStatus;
@@ -19,8 +19,11 @@ bool fansRelayStatus;
 bool hotResistanceStatus;
 bool lightAlarmStatus;
 bool manInRoomAlarmStatus;
-bool openDoorAlarmStatus;
 bool standByStatus;
+#endif
+
+bool deviceResponsive;
+bool openDoorAlarmStatus;
 bool temperatureAlarmStatus;
 CloudTemperature ambientTemperature;
 CloudTemperature evaporatorTemperature;
