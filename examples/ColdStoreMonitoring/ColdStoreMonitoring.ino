@@ -2,15 +2,24 @@
 // Check thingProperties.h to find out which ones.
 #define MINIMAL_THINGS_CONFIG
 
+// Defineds if an external light sensor is attached and should be used
+// This is useful to check e.g. if the light is on in the room containing the cold store
+#define USE_EXTERNAL_LIGHT_SENSOR
+#define LIGHT_SENSOR_PIN A3
+
+
 // Enable debugging
 //#define DEBUG
 
 #include <Arduino.h>
 #include "thingProperties.h"
 #include "PegoController.h"
+#if defined(USE_EXTERNAL_LIGHT_SENSOR)
+  #include "lightSensor.h"
+#endif
 
 // Defines the serial port to be used for debugging
-#define SerialPort Serial //Serial1
+#define SerialPort Serial //Serial1 for debugging on the hardware serial pins
 
 // Defines the baud rate of the serial port for debugging
 #define SERIAL_BAUDRATE 19200
@@ -100,11 +109,6 @@ void readValuesFromController(){
   SerialPort.print(ambientTemperature);
   SerialPort.println(" °C\n");
 
-  evaporatorTemperature = controller.getEvaporatorTemperature();
-  SerialPort.print("Evaporator Temperature: ");
-  SerialPort.print(evaporatorTemperature);
-  SerialPort.println(" °C\n");
-
   openDoorAlarmStatus = controller.getOpenDoorAlarmStatus();
   SerialPort.print("Open Door Alarm Status: ");
   SerialPort.println(openDoorAlarmStatus ? "ON\n" : "OFF\n");
@@ -114,6 +118,11 @@ void readValuesFromController(){
   SerialPort.println(temperatureAlarmStatus ? "ON\n" : "OFF\n");
   
   #if !defined(MINIMAL_THINGS_CONFIG)  
+
+    evaporatorTemperature = controller.getEvaporatorTemperature();
+    SerialPort.print("Evaporator Temperature: ");
+    SerialPort.print(evaporatorTemperature);
+    SerialPort.println(" °C\n");
 
     #ifdef ECP_202
       hotResistanceStatus = controller.getHotResistanceStatus();
@@ -186,7 +195,12 @@ void loop() {
 
   if (millis() - lastCheck >= REGISTER_UPDATE_INTERVAL) {
     lastCheck = millis();
-    readValuesFromController();    
+    readValuesFromController();
+    #if defined(USE_EXTERNAL_LIGHT_SENSOR)
+      ambientLightStatus = getAmbientLightStatus(LIGHT_SENSOR_PIN);
+      SerialPort.print("Ambient Light Status: ");
+      SerialPort.println(ambientLightStatus ? "ON\n" : "OFF\n");
+    #endif   
   }
   ArduinoCloud.update();
 }

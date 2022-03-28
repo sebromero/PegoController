@@ -5,6 +5,7 @@
 #include "arduino_secrets.h"
 
 #if !defined(MINIMAL_THINGS_CONFIG)
+CloudTemperature evaporatorTemperature;
 bool ambientProbeFaultStatus;
 bool coldRoomLightRelayStatus;
 bool compressorProtectionAlarmStatus;
@@ -26,11 +27,15 @@ bool deviceResponsive;
 bool openDoorAlarmStatus;
 bool temperatureAlarmStatus;
 CloudTemperature ambientTemperature;
-CloudTemperature evaporatorTemperature;
+
+#if defined(USE_EXTERNAL_LIGHT_SENSOR)
+bool ambientLightStatus;
+#endif
 
 void initProperties(){
 
   #if !defined(MINIMAL_THINGS_CONFIG)  
+  ArduinoCloud.addProperty(evaporatorTemperature, READ, ON_CHANGE, NULL, 1);
   ArduinoCloud.addProperty(ambientProbeFaultStatus, READ, ON_CHANGE, NULL);
   ArduinoCloud.addProperty(coldRoomLightRelayStatus, READ, ON_CHANGE, NULL);
   ArduinoCloud.addProperty(compressorProtectionAlarmStatus, READ, ON_CHANGE, NULL);
@@ -51,8 +56,11 @@ void initProperties(){
   ArduinoCloud.addProperty(deviceResponsive, READ, ON_CHANGE, NULL);
   ArduinoCloud.addProperty(openDoorAlarmStatus, READ, ON_CHANGE, NULL);
   ArduinoCloud.addProperty(temperatureAlarmStatus, READ, ON_CHANGE, NULL);
-  ArduinoCloud.addProperty(ambientTemperature, READ, ON_CHANGE, NULL, 1);
-  ArduinoCloud.addProperty(evaporatorTemperature, READ, ON_CHANGE, NULL, 1);
+  ArduinoCloud.addProperty(ambientTemperature, READ, ON_CHANGE, NULL, 1);  
+
+  #if defined(USE_EXTERNAL_LIGHT_SENSOR)  
+  ArduinoCloud.addProperty(ambientLightStatus, READ, ON_CHANGE, NULL);
+  #endif
 }
 
 #if defined(SECRET_APN)

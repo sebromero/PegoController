@@ -1,5 +1,12 @@
 sketch_template: ColdStoreMonitoring
 variables:
+  - id: ambientLightStatus
+    name: ambientLightStatus
+    variable_name: ambientLightStatus
+    type: STATUS
+    permission: READ_ONLY
+    update_parameter: 0
+    update_strategy: ON_CHANGE
   - id: deviceResponsive
     name: deviceResponsive
     variable_name: deviceResponsive
