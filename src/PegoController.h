@@ -40,14 +40,14 @@ private:
     byte getMSByteBit(int16_t value, byte bit);
 
     /**
-     * @brief Sets the requested bit from the least significant byte (little endian)     
+     * @brief Sets the requested bit from the least significant byte (little endian) to 1
      * @param value A two byte (word) value
      * @param bit The bit index that shall be set to 1 starting from 0 (= least significant bit).     
      */
     void setLSByteBit(int16_t *value, byte bit);
 
     /**
-     * @brief Sets the requested bit from the most significant byte (little endian)     
+     * @brief Sets the requested bit from the most significant byte (little endian) to 1
      * @param value A two byte (word) value
      * @param bit The bit index that shall be set to 1 starting from 0 (= least significant bit).     
      */
