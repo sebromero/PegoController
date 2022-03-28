@@ -30,7 +30,7 @@ fi
 mkdir "build" > /dev/null 2>&1
 
 # Check if thing is already created
-arduino-cloud-cli thing list --format json | grep '"name": "$THING_NAME"' > /dev/null 2>&1
+arduino-cloud-cli thing list --format json | grep '"name": "'"$THING_NAME"'"' > /dev/null 2>&1
 
 if [ $? -ne 0 ]; then
     echo "Creating thing '$THING_NAME' ..."
@@ -52,7 +52,7 @@ function maybeCreateDashboard(){
     local outputFilename=$4
 
     # Check if dashboard already exists
-    arduino-cloud-cli dashboard list --format json | grep '"name": "$dashboardName"' > /dev/null 2>&1
+    arduino-cloud-cli dashboard list --format json | grep '"name": "'"$dashboardName"'"' > /dev/null 2>&1
     if [ $? -ne 0 ]; then
         echo "Creating dashboard '$dashboardName' using thing ID $THING_ID ..."
         arduino-cloud-cli dashboard create --name "$dashboardName" --template $dashboardFile --override template-thing-id=$thingID --format json > $outputFilename
