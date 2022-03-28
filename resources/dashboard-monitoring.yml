@@ -1,5 +1,145 @@
 name: Cold Store Monitoring
 widgets:
+    - height: 4
+      height_mobile: 4
+      name: Stand By
+      type: Status
+      variables:
+        - thing_id: template-thing-id
+          variable_id: standByStatus
+      width: 4
+      width_mobile: 4
+      x: 12
+      x_mobile: 0
+      "y": 16
+      y_mobile: 34
+    - height: 4
+      height_mobile: 4
+      name: Dripping
+      options:
+        mode: True / False
+      type: Status
+      variables:
+        - thing_id: template-thing-id
+          variable_id: drippingStatus
+      width: 4
+      width_mobile: 4
+      x: 16
+      x_mobile: 0
+      "y": 20
+      y_mobile: 46
+    - height: 4
+      height_mobile: 4
+      name: Temperature Alarm
+      options:
+        mode: Color 1
+      type: LED
+      variables:
+        - thing_id: template-thing-id
+          variable_id: temperatureAlarmStatus
+      width: 4
+      width_mobile: 4
+      x: 0
+      x_mobile: 4
+      "y": 8
+      y_mobile: 18
+    - height: 4
+      height_mobile: 4
+      name: Man In RoomAlarm
+      options:
+        mode: Color 1
+      type: LED
+      variables:
+        - thing_id: template-thing-id
+          variable_id: manInRoomAlarmStatus
+      width: 4
+      width_mobile: 4
+      x: 12
+      x_mobile: 0
+      "y": 8
+      y_mobile: 22
+    - height: 4
+      height_mobile: 4
+      name: Eeprom Error
+      options:
+        mode: Color 1
+      type: LED
+      variables:
+        - thing_id: template-thing-id
+          variable_id: eepromErrorStatus
+      width: 4
+      width_mobile: 4
+      x: 20
+      x_mobile: 4
+      "y": 8
+      y_mobile: 30
+    - height: 4
+      height_mobile: 4
+      name: Evaporator Probe Fault
+      options:
+        mode: Color 1
+      type: LED
+      variables:
+        - thing_id: template-thing-id
+          variable_id: evaporatorProbeFaultStatus
+      width: 4
+      width_mobile: 4
+      x: 0
+      x_mobile: 4
+      "y": 12
+      y_mobile: 26
+    - height: 4
+      height_mobile: 2
+      name: Evaporator Temperature
+      type: Value
+      variables:
+        - thing_id: template-thing-id
+          variable_id: evaporatorTemperature
+      width: 4
+      width_mobile: 8
+      x: 0
+      x_mobile: 0
+      "y": 4
+      y_mobile: 10
+    - height: 4
+      height_mobile: 4
+      name: Defrost Relay
+      type: Status
+      variables:
+        - thing_id: template-thing-id
+          variable_id: defrostRelayStatus
+      width: 4
+      width_mobile: 4
+      x: 0
+      x_mobile: 0
+      "y": 20
+      y_mobile: 42
+    - height: 4
+      height_mobile: 4
+      name: Compressor Protection
+      type: Status
+      variables:
+        - thing_id: template-thing-id
+          variable_id: compressorProtectionStatus
+      width: 4
+      width_mobile: 4
+      x: 8
+      x_mobile: 0
+      "y": 16
+      y_mobile: 50
+    - height: 4
+      height_mobile: 4
+      name: Hot Resistance
+      type: Status
+      variables:
+        - thing_id: template-thing-id
+          variable_id: hotResistanceStatus
+      width: 4
+      width_mobile: 4
+      x: 4
+      x_mobile: 4
+      "y": 20
+      y_mobile: 50
     - height: 8
       height_mobile: 6
       name: Evaporator Temperature
@@ -13,19 +153,6 @@ widgets:
       x_mobile: 0
       "y": 0
       y_mobile: 12
-    - height: 4
-      height_mobile: 4
-      name: Hot Resistance
-      type: Status
-      variables:
-        - thing_id: template-thing-id
-          variable_id: hotResistanceStatus
-      width: 4
-      width_mobile: 4
-      x: 0
-      x_mobile: 0
-      "y": 20
-      y_mobile: 50
     - height: 4
       height_mobile: 4
       name: Light Alarm
@@ -58,34 +185,6 @@ widgets:
       y_mobile: 18
     - height: 4
       height_mobile: 4
-      name: Stand By
-      type: Status
-      variables:
-        - thing_id: template-thing-id
-          variable_id: standByStatus
-      width: 4
-      width_mobile: 4
-      x: 8
-      x_mobile: 0
-      "y": 16
-      y_mobile: 34
-    - height: 4
-      height_mobile: 4
-      name: Temperature Alarm
-      options:
-        mode: Color 1
-      type: LED
-      variables:
-        - thing_id: template-thing-id
-          variable_id: temperatureAlarmStatus
-      width: 4
-      width_mobile: 4
-      x: 0
-      x_mobile: 4
-      "y": 8
-      y_mobile: 18
-    - height: 4
-      height_mobile: 4
       name: Door Open
       options:
         mode: True / False
@@ -95,21 +194,8 @@ widgets:
           variable_id: doorSwitchStatus
       width: 4
       width_mobile: 4
-      x: 4
-      x_mobile: 4
-      "y": 16
-      y_mobile: 34
-    - height: 4
-      height_mobile: 4
-      name: Fans Relay
-      type: Status
-      variables:
-        - thing_id: template-thing-id
-          variable_id: fansRelayStatus
-      width: 4
-      width_mobile: 4
       x: 8
-      x_mobile: 4
+      x_mobile: 0
       "y": 20
       y_mobile: 38
     - height: 8
@@ -127,47 +213,17 @@ widgets:
       y_mobile: 4
     - height: 4
       height_mobile: 4
-      name: Man In RoomAlarm
-      options:
-        mode: Color 1
-      type: LED
-      variables:
-        - thing_id: template-thing-id
-          variable_id: manInRoomAlarmStatus
-      width: 4
-      width_mobile: 4
-      x: 12
-      x_mobile: 0
-      "y": 8
-      y_mobile: 22
-    - height: 4
-      height_mobile: 4
-      name: Defrost Relay
+      name: Fans Relay
       type: Status
       variables:
         - thing_id: template-thing-id
-          variable_id: defrostRelayStatus
-      width: 4
-      width_mobile: 4
-      x: 20
-      x_mobile: 0
-      "y": 16
-      y_mobile: 42
-    - height: 4
-      height_mobile: 4
-      name: Dripping
-      options:
-        mode: True / False
-      type: Status
-      variables:
-        - thing_id: template-thing-id
-          variable_id: drippingStatus
+          variable_id: fansRelayStatus
       width: 4
       width_mobile: 4
       x: 12
-      x_mobile: 0
+      x_mobile: 4
       "y": 20
-      y_mobile: 46
+      y_mobile: 42
     - height: 4
       height_mobile: 4
       name: Compressor Relay
@@ -177,94 +233,10 @@ widgets:
           variable_id: compressorRelayStatus
       width: 4
       width_mobile: 4
-      x: 16
-      x_mobile: 4
-      "y": 16
-      y_mobile: 42
-    - height: 4
-      height_mobile: 4
-      name: Eeprom Error
-      options:
-        mode: Color 1
-      type: LED
-      variables:
-        - thing_id: template-thing-id
-          variable_id: eepromErrorStatus
-      width: 4
-      width_mobile: 4
       x: 20
       x_mobile: 4
-      "y": 8
-      y_mobile: 30
-    - height: 4
-      height_mobile: 4
-      name: Evaporator Probe Fault
-      options:
-        mode: Color 1
-      type: LED
-      variables:
-        - thing_id: template-thing-id
-          variable_id: evaporatorProbeFaultStatus
-      width: 4
-      width_mobile: 4
-      x: 0
-      x_mobile: 4
-      "y": 12
-      y_mobile: 26
-    - height: 4
-      height_mobile: 4
-      name: Compressor Protection
-      type: Status
-      variables:
-        - thing_id: template-thing-id
-          variable_id: compressorProtectionStatus
-      width: 4
-      width_mobile: 4
-      x: 4
-      x_mobile: 4
-      "y": 20
-      y_mobile: 46
-    - height: 4
-      height_mobile: 2
-      name: Evaporator Temperature
-      type: Value
-      variables:
-        - thing_id: template-thing-id
-          variable_id: evaporatorTemperature
-      width: 4
-      width_mobile: 8
-      x: 0
-      x_mobile: 0
-      "y": 4
-      y_mobile: 10
-    - height: 4
-      height_mobile: 4
-      name: Ambient Probe Fault
-      options:
-        mode: Color 1
-      type: LED
-      variables:
-        - thing_id: template-thing-id
-          variable_id: ambientProbeFaultStatus
-      width: 4
-      width_mobile: 4
-      x: 4
-      x_mobile: 0
-      "y": 12
-      y_mobile: 30
-    - height: 4
-      height_mobile: 4
-      name: Cold Room Light Relay
-      type: Status
-      variables:
-        - thing_id: template-thing-id
-          variable_id: coldRoomLightRelayStatus
-      width: 4
-      width_mobile: 4
-      x: 12
-      x_mobile: 0
       "y": 16
-      y_mobile: 38
+      y_mobile: 46
     - height: 4
       height_mobile: 2
       name: Device Responsive
@@ -308,4 +280,44 @@ widgets:
       x_mobile: 4
       "y": 8
       y_mobile: 22
-
+    - height: 4
+      height_mobile: 4
+      name: Ambient Light
+      type: Status
+      variables:
+        - thing_id: template-thing-id
+          variable_id: ambientLightStatus
+      width: 4
+      width_mobile: 4
+      x: 4
+      x_mobile: 4
+      "y": 16
+      y_mobile: 34
+    - height: 4
+      height_mobile: 4
+      name: Cold Room Light Relay
+      type: Status
+      variables:
+        - thing_id: template-thing-id
+          variable_id: coldRoomLightRelayStatus
+      width: 4
+      width_mobile: 4
+      x: 16
+      x_mobile: 4
+      "y": 16
+      y_mobile: 38
+    - height: 4
+      height_mobile: 4
+      name: Ambient Probe Fault
+      options:
+        mode: Color 1
+      type: LED
+      variables:
+        - thing_id: template-thing-id
+          variable_id: ambientProbeFaultStatus
+      width: 4
+      width_mobile: 4
+      x: 4
+      x_mobile: 0
+      "y": 12
+      y_mobile: 30
