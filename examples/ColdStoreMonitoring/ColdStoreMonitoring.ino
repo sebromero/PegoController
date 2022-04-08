@@ -2,14 +2,20 @@
 // Check thingProperties.h to find out which ones.
 #define MINIMAL_THINGS_CONFIG
 
-// Defineds if an external light sensor is attached and should be used
+// Defines if an external light sensor is attached and should be used
 // This is useful to check e.g. if the light is on in the room containing the cold store
 #define USE_EXTERNAL_LIGHT_SENSOR
 #define LIGHT_SENSOR_PIN A3
 
 
 // Enable debugging
-//#define DEBUG
+#define DEBUG
+
+#if defined(DEBUG)
+  #define DEBUG_MESSAGE_LEVEL DBG_VERBOSE
+#else
+  #define DEBUG_MESSAGE_LEVEL DBG_INFO
+#endif
 
 #include <Arduino.h>
 #include "thingProperties.h"
@@ -62,7 +68,7 @@ void setupCloud(){
      The default is 0 (only errors).
      Maximum is 4
  */
-  setDebugMessageLevel(4);
+  setDebugMessageLevel(DEBUG_MESSAGE_LEVEL);
   ArduinoCloud.printDebugInfo();
 }
 
