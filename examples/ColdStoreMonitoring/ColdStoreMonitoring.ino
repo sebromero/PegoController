@@ -93,9 +93,6 @@ void setup() {
   setupController();
 
   setupCloud();
-
-  // Indicate that the Modbus client & IoTCloud connection was started successfully
-  digitalWrite(LED_BUILTIN, HIGH);
 }
 
 /**
@@ -197,6 +194,9 @@ void readValuesFromController(){
 }
 
 void loop() {
+  // Indicate that the Modbus client & IoTCloud connection was started successfully
+  digitalWrite(LED_BUILTIN, ArduinoCloud.connected() ? HIGH : LOW);  
+  
   static auto lastCheck= millis();
 
   if (millis() - lastCheck >= REGISTER_UPDATE_INTERVAL) {
