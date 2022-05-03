@@ -34,7 +34,7 @@ void setup() {
 void loop() {
   float battery_voltage = 4.3; // use voltmeter
 
-  analogReadResolution(10);
+  analogReadResolution(10); // 10bit resolution
   analogReference(AR_INTERNAL1V0); 
   // AR_DEFAULT: the default analog reference of 3.3V 
   // AR_INTERNAL1V0: a built-in 1.0V reference
