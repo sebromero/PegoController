@@ -23,6 +23,7 @@
 #if defined(USE_EXTERNAL_LIGHT_SENSOR)
   #include "lightSensor.h"
 #endif
+#include "battery.h"
 
 // Defines the serial port to be used for debugging
 #define SerialPort Serial //Serial1 for debugging on the hardware serial pins
@@ -205,8 +206,11 @@ void loop() {
     #if defined(USE_EXTERNAL_LIGHT_SENSOR)
       ambientLightStatus = getAmbientLightStatus(LIGHT_SENSOR_PIN);
       SerialPort.print("Ambient Light Status: ");
-      SerialPort.println(ambientLightStatus ? "ON\n" : "OFF\n");
-    #endif   
+      SerialPort.println(ambientLightStatus ? "ON" : "OFF");
+    #endif
+    SerialPort.print("Battery Level: ");
+    SerialPort.println(batteryLevel());
+    SerialPort.println();
   }
   ArduinoCloud.update();
 }
