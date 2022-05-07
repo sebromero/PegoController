@@ -62,20 +62,22 @@ void initProperties(){
 }
 
 #if defined(SECRET_APN)
-// GSM configuration
-const char GPRS_APN[]      = SECRET_APN;
-const char PINNUMBER[]     = SECRET_PIN;
-const char GPRS_LOGIN[]    = SECRET_USERNAME;
-const char GPRS_PASSWORD[] = SECRET_PASSWORD;
-GSMConnectionHandler ArduinoIoTPreferredConnection(PINNUMBER, GPRS_APN, GPRS_LOGIN, GPRS_PASSWORD);
+  // GSM configuration
+  const char GPRS_APN[]      = SECRET_APN;
+  const char PINNUMBER[]     = SECRET_PIN;
+  const char GPRS_LOGIN[]    = SECRET_USERNAME;
+  const char GPRS_PASSWORD[] = SECRET_PASSWORD;
+  GSMConnectionHandler ArduinoIoTPreferredConnection(PINNUMBER, GPRS_APN, GPRS_LOGIN, GPRS_PASSWORD);
 
 #elif defined(SECRET_APP_EUI)
-const char APPEUI[]      = SECRET_APP_EUI;
-const char APPKEY[]     = SECRET_APP_KEY;
-LoRaConnectionHandler ArduinoIoTPreferredConnection(APPEUI, APPKEY, _lora_band::EU868);
+  const char APPEUI[]      = SECRET_APP_EUI;
+  const char APPKEY[]     = SECRET_APP_KEY;
+  LoRaConnectionHandler ArduinoIoTPreferredConnection(APPEUI, APPKEY, _lora_band::EU868);
 
+#elif defined(SECRET_SSID)
+  const char SSID[]      = SECRET_SSID;
+  const char PASS[]     = SECRET_PASS;
+  WiFiConnectionHandler ArduinoIoTPreferredConnection(SSID, PASS);
 #else
-const char SSID[]      = SECRET_SSID;
-const char PASS[]     = SECRET_PASS;
-WiFiConnectionHandler ArduinoIoTPreferredConnection(SSID, PASS);
+  #error No IoT Cloud configuration found.
 #endif
