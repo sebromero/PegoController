@@ -9,7 +9,7 @@
 
 
 // Enable debugging
-#define DEBUG
+// #define DEBUG
 
 #if defined(DEBUG)
   #define DEBUG_MESSAGE_LEVEL DBG_VERBOSE
