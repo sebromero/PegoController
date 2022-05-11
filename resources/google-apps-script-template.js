@@ -17,6 +17,7 @@ function doPost(e) {
         let data = JSON.parse(e.postData.contents)
         if (getValue(data, "deviceResponsive") == false) sendMail(recipients, "⚠️ The cold store controller is not responding.");
         if (getValue(data, "temperatureAlarmStatus") == true) sendMail(recipients, "⚠️ The cold store temperature alarm was triggered!");
+        if (getValue(data, "openDoorAlarmStatus") == true) sendMail(recipients, "⚠️ The cold store open-door alarm was triggered!");
     }
 
     return ContentService.createTextOutput(JSON.stringify({ "result": "done" }));
