@@ -52,7 +52,8 @@ int16_t PegoController::convertToSignedValue(uint16_t value, RegisterDescription
 
 int16_t PegoController::readModbusRegister(RegisterDescription registerEntry){      
     if (!ModbusRTUClient.requestFrom(_peripheralID, registerEntry.type, registerEntry.registerNumber, 1 /* Amount of registers */)) {
-        SerialPort.print("Failed to read registers! ");
+        SerialPort.print("Failed to read register: ");
+        SerialPort.println(registerEntry.registerNumber);
         SerialPort.println(ModbusRTUClient.lastError());
         return READ_ERROR;
     }
