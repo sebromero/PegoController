@@ -17,6 +17,8 @@ private:
     // The peripheral's ModBus address
     uint8_t _peripheralID;
 
+    unsigned long _lastResponsive;
+
     // The baud rate for the RS485 connection
     unsigned long _baudRate;
 

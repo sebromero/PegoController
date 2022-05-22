@@ -28,6 +28,14 @@ Single input "Discrete Input" | read only | 1-bit 02
 #define SerialPort Serial
 #endif
 
+/* 
+Defines the amount of time (in ms) during which the controller has to be
+unreachable until it transitions into the unresponsive state.
+The controller may not always respond to all requests. Hence using a 
+threshold give the controller a grace period until being considered unresponsive.
+*/
+#define RESPONSIVENESS_THRESHOLD 300000
+
 PegoController::PegoController( unsigned long baudRate, uint8_t peripheralID, uint16_t serialConfig) : 
 _baudRate(baudRate),
 _peripheralID(peripheralID),
@@ -35,11 +43,16 @@ _serialConfig(serialConfig)
 {}
 
 bool PegoController::begin(){
+    _lastResponsive = millis();
     return ModbusRTUClient.begin(_baudRate, _serialConfig);
 }
 
 bool PegoController::responsive(){
-    return readModbusRegister(deviceStatusRegister) != READ_ERROR;
+    auto isResponsive = readModbusRegister(deviceStatusRegister) != READ_ERROR;
+    if(isResponsive){
+        _lastResponsive = millis();
+    }
+    return millis() - _lastResponsive < RESPONSIVENESS_THRESHOLD;
 };
 
 
