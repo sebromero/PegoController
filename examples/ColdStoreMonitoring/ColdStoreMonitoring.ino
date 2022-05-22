@@ -60,7 +60,11 @@ void setupCloud(){
   SerialPort.println("Connecting to Arduino IoT cloud...");
 
   // Connect to Arduino IoT Cloud
-  ArduinoCloud.begin(ArduinoIoTPreferredConnection, true /* enable watch dog */);
+  #if defined(USE_GSM_CONNECTION)
+    ArduinoCloud.begin(ArduinoIoTPreferredConnection, false /* disable watch dog (unreliable) */);
+  #else
+    ArduinoCloud.begin(ArduinoIoTPreferredConnection, true /* enable watch dog */);
+  #endif
   
   /*
      The following function allows you to obtain more information

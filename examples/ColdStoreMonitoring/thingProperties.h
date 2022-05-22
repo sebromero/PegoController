@@ -62,6 +62,7 @@ void initProperties(){
 }
 
 #if defined(SECRET_APN)
+  #define USE_GSM_CONNECTION true
   // GSM configuration
   const char GPRS_APN[]      = SECRET_APN;
   const char PINNUMBER[]     = SECRET_PIN;
