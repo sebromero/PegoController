@@ -228,30 +228,45 @@ public:
     * - Unit: °C
     * - Resolution: 1 °C steps, with sign
     * - Range: -35..+45 °C
+    * @param value The temperature in degree celsius
     * @return true if the value was updated succssfully, false otherwise.
     */
     bool setEndOfDefrostingTemperature(int16_t value);
     
     /**
-    * @brief brief description
+    * @brief Get the maximum defrosting duration
     * - Device Variable: d3
-    * - Unit: 
-    * - Resolution: 
-    * - Range: 
-    * @return
+    * - Unit: minutes
+    * - Resolution: 1 minute steps.
+    * - Range: 1..240 minutes
+    * @return the duration in minutes
     */
     int16_t getMaxDefrostingDuration();
+
+    /**
+     * @brief Set the maximum defrosting duration
+     * 
+     * @param value the duration in minutes
+     * @return true if the value was updated succssfully, false otherwise.
+     */
     bool setMaxDefrostingDuration(int16_t value);
     
     /**
     * @brief brief description
     * - Device Variable: d7
-    * - Unit: 
-    * - Resolution: 
-    * - Range: 
-    * @return
+    * - Unit: minutes
+    * - Resolution: 1 minute steps.
+    * - Range: 0..10 minutes
+    * @return the duration in minutes
     */
     int16_t getDrippingDuration();
+
+    /**
+     * @brief Set the dripping duration
+     * 
+     * @param value The duration in minutes (0 = disabled)
+     * @return true if the value was updated succssfully, false otherwise.
+     */
     bool setDrippingDuration(int16_t value);
     
     /**
