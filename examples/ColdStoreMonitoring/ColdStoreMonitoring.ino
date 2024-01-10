@@ -112,21 +112,30 @@ void readValuesFromController(){
     return;
   }
 
-  ambientTemperature = controller.getAmbientTemperature();
-  SerialPort.print("Ambient Temperature: ");
-  SerialPort.print(ambientTemperature);
-  SerialPort.println(" °C\n");
+  auto newAmbientTemperature = controller.getAmbientTemperature();
+  if(newAmbientTemperature != READ_ERROR_FLOAT){
+    ambientTemperature = newAmbientTemperature;
+    SerialPort.print("Ambient Temperature: ");
+    SerialPort.print(ambientTemperature);
+    SerialPort.println(" °C\n");
+  }
 
-  openDoorAlarmStatus = controller.getOpenDoorAlarmStatus();
-  SerialPort.print("Open Door Alarm Status: ");
-  SerialPort.println(openDoorAlarmStatus ? "ON\n" : "OFF\n");
+  auto newOpenDoorAlarmStatus = controller.getOpenDoorAlarmStatus();
+  if(newOpenDoorAlarmStatus != READ_ERROR){
+    openDoorAlarmStatus = newOpenDoorAlarmStatus;
+    SerialPort.print("Open Door Alarm Status: ");
+    SerialPort.println(openDoorAlarmStatus ? "ON\n" : "OFF\n");
+  }
   
-  temperatureAlarmStatus = controller.getTemperatureAlarmStatus();    
-  SerialPort.print("Temperature alarm: ");
-  SerialPort.println(temperatureAlarmStatus ? "ON\n" : "OFF\n");
+  auto newTemperatureAlarmStatus = controller.getTemperatureAlarmStatus();    
+  if(newTemperatureAlarmStatus != READ_ERROR){
+    temperatureAlarmStatus = newTemperatureAlarmStatus;
+    SerialPort.print("Temperature alarm: ");
+    SerialPort.println(temperatureAlarmStatus ? "ON\n" : "OFF\n");
+  }
   
   #if !defined(MINIMAL_THINGS_CONFIG)  
-
+    
     evaporatorTemperature = controller.getEvaporatorTemperature();
     SerialPort.print("Evaporator Temperature: ");
     SerialPort.print(evaporatorTemperature);
